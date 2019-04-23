@@ -139,8 +139,19 @@ const list = new LinkedList();
 list.insertLast(1);
 list.insertLast(2);
 list.insertLast(3);
+list.insertLast(4);
+list.insertLast(5);
 
+function fromLast(list, n) {
+  let slow = list.head;
+  let fast = list.getAt(n);
 
-console.log('list.getAt(0);', list.getAt(0));
-console.log('list.getAt(1);', list.getAt(1));
-console.log('list.getAt(2);', list.getAt(2));
+  while (fast.next) {
+    slow = slow.next;
+    fast = fast.next;
+  }
+
+  return slow;
+}
+
+console.log(fromLast(list, 2));

@@ -139,8 +139,20 @@ const list = new LinkedList();
 list.insertLast(1);
 list.insertLast(2);
 list.insertLast(3);
+list.insertLast(4);
+list.insertLast(5);
 
+// returns middle node or last node of first half in case of even number of nodes
+function midpoint(list) {
+  let slow = list.head;
+  let fast = list.head;
 
-console.log('list.getAt(0);', list.getAt(0));
-console.log('list.getAt(1);', list.getAt(1));
-console.log('list.getAt(2);', list.getAt(2));
+  while (fast.next && fast.next.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+
+  return slow;
+}
+
+console.log(midpoint(list));

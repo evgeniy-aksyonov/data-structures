@@ -135,12 +135,42 @@ class LinkedList {
   }
 }
 
-const list = new LinkedList();
-list.insertLast(1);
-list.insertLast(2);
-list.insertLast(3);
+const list1 = new LinkedList();
+const list2 = new LinkedList();
 
+const a = new Node('a');
+const b = new Node('b');
+const c = new Node('c');
 
-console.log('list.getAt(0);', list.getAt(0));
-console.log('list.getAt(1);', list.getAt(1));
-console.log('list.getAt(2);', list.getAt(2));
+const d = new Node('d');
+const e = new Node('e');
+const f = new Node('f');
+
+list1.head = a;
+a.next = b;
+b.next = c;
+c.next = b;
+
+list2.head = d;
+d.next = e;
+e.next = f;
+f.next = null;
+
+function isCircular(list) {
+  let slow = list.head;
+  let fast = list.head;
+
+  while (fast.next && fast.next.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+
+    if (slow === fast) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+console.log(isCircular(list1)); // true
+console.log(isCircular(list2)); // false
