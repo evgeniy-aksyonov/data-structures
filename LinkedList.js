@@ -50,7 +50,7 @@ class LinkedList {
   }
 
   getLast() {
-    return this.getAt(this.size() - 1)
+    return this.getAt(this.size() - 1);
   }
   // ============================
 
