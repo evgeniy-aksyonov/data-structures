@@ -92,6 +92,8 @@ BST.insertNode(7);
 BST.insertNode(13);
 
 // console.log(BST);
-console.log(BST.preOrderTraversal(BST.root));
-console.log(BST.postOrderTraversal(BST.root));
-console.log(BST.inOrderTraversal(BST.root));
+console.log('preOrderTraversal', BST.preOrderTraversal(BST.root)); // При префиксном обходе текущий узел посещается до его дочерних узлов (отсюда и название).
+console.log('------');
+console.log('inOrderTraversal', BST.inOrderTraversal(BST.root)); // В контексте бинарного дерева поиска симметричный обход узлов происходит по возрастанию.
+console.log('------');
+console.log('postOrderTraversal', BST.postOrderTraversal(BST.root)); // При постфиксном обходе текущий узел посещается после его дочерних узлов (от­сюда и название).
