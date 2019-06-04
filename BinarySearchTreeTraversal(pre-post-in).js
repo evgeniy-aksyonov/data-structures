@@ -44,28 +44,20 @@ class BinarySearchTree {
     }
   }
 
+  // При префиксном обходе текущий узел посещается до его дочерних узлов (отсюда и название).
   preOrderTraversal(root) {
     console.log(root.data);
 
     if (root.left) {
       this.preOrderTraversal(root.left);
     }
+
     if (root.right) {
       this.preOrderTraversal(root.right);
     }
   }
 
-  postOrderTraversal(root) {
-    if (root.left) {
-      this.postOrderTraversal(root.left);
-    }
-    if (root.right) {
-      this.postOrderTraversal(root.right);
-    }
-
-    console.log(root.data);
-  }
-
+  // В контексте бинарного дерева поиска симметричный обход узлов происходит по возрастанию.
   inOrderTraversal(root) {
     if (root.left) {
       this.inOrderTraversal(root.left);
@@ -76,6 +68,19 @@ class BinarySearchTree {
     if (root.right) {
       this.inOrderTraversal(root.right);
     }
+  }
+
+  // При постфиксном обходе текущий узел посещается после его дочерних узлов (от­сюда и название).
+  postOrderTraversal(root) {
+    if (root.left) {
+      this.postOrderTraversal(root.left);
+    }
+
+    if (root.right) {
+      this.postOrderTraversal(root.right);
+    }
+
+    console.log(root.data);
   }
 }
 

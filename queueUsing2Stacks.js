@@ -14,51 +14,76 @@ class Stack {
   peek() {
     return this.data[this.data.length - 1];
   }
+
+  isEmpty() {
+    return this.data.length === 0;
+  }
 }
 
-class Queue {
+class Queue { // define Queue class, using two stacks
   constructor() {
-    this.entryStack = new Stack();
-    this.outputStack = new Stack();
+    this.stackOne = new Stack();
+    this.stackTwo = new Stack();
   }
 
-  add(record) {
-    this.entryStack.push(record);
+  enqueue(val) {
+    this.stackOne.push(val);
   }
 
-  remove() {
-    while (this.entryStack.peek()) {
-      this.outputStack.push(this.entryStack.pop());
+  dequeue() {
+    if (this.stackTwo.isEmpty()) { // if two is empty, empty one completely into it
+      while (!this.stackOne.isEmpty()) {
+        this.stackTwo.push(this.stackOne.pop());
+      }
     }
-    const target = this.outputStack.pop();
-    while (this.outputStack.peek()) {
-      this.entryStack.push(this.outputStack.pop());
-    }
-    console.log('target: ', target);
-    return target;
+    return this.stackTwo.pop();
   }
 
   peek() {
-    while (this.entryStack.peek()) {
-      this.outputStack.push(this.entryStack.pop());
+    if (this.stackTwo.isEmpty()) {
+      while (!this.stackOne.isEmpty()) {
+        this.stackTwo.push(this.stackOne.pop());
+      }
     }
-    let target = this.outputStack.peek();
-    while (this.outputStack.peek()) {
-      this.entryStack.push(this.outputStack.pop());
-    }
-    console.log('target: ', target);
-    return target;
+    return this.stackTwo.peek();
   }
 }
 
+function processData(input) {
+  (input = input.split('\n')).shift();
+
+  let q = new Queue();
+
+  for (let i of input) {
+    let [type, value] = i.split(' ').map(item => +item);
+
+    switch (type) {
+      case 1:
+        q.enqueue(value);
+        break;
+
+      case 2:
+        q.dequeue();
+        break;
+
+      case 3:
+        console.log(q.peek());
+        break;
+
+      default:
+        break;
+    }
+  }
+} 
+
 let q = new Queue();
 
-q.add('red');
-q.add('green');
-q.add('blue');
+q.enqueue('red');
+q.enqueue('green');
+q.enqueue('blue');
 
-q.peek(); // red
+console.log('q.peek(): ', q.peek()); // red
 
-q.remove(); // red
-q.remove(); // green
-q.remove(); // blue
+console.log('q.dequeue(): ', q.dequeue()); // red
+console.log('q.dequeue(): ', q.dequeue()); // green
+console.log('q.dequeue(): ', q.dequeue()); // blue
