@@ -15,3 +15,16 @@ class Stack {
     return this.data[this.data.length - 1];
   }
 }
+
+let stack = new Stack();
+
+stack.push('James');
+stack.push('Lena');
+stack.push('Inna');
+
+console.log(stack.peek()); // Inna
+
+stack.pop();
+
+console.log(stack.peek()); // Lena
+
